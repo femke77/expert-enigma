@@ -1,6 +1,7 @@
 const { gql } = require('apollo-server-express');
 
 const typeDef = gql`
+
   type User {
     _id: ID!
     username: String!
@@ -29,15 +30,23 @@ const typeDef = gql`
     contentType: String
   }
 
- 
 
   type Donation {
-    _id: ID!
-    campaignId: [Campaign]
-    donorId: [User]
+    _id: ID
+    campaignId: ID
+    donorId: ID
     amount: Int
     createdAt: String
+
   }
+
+  # type Donation {
+  #   _id: ID!
+  #   campaignId: [Campaign]
+  #   donorId: [User]
+  #   amount: Int
+  #   createdAt: String
+  # }
 
   type Purchase_power {
     _id: ID!
@@ -51,6 +60,10 @@ const typeDef = gql`
     creatorId: [User]
     campaigns: [Campaign]
     createdAt: String
+  }
+
+  type Checkout {
+    session: ID
   }
 
   type Auth {
@@ -100,9 +113,10 @@ const typeDef = gql`
     createCampaign(campaignData: CampaignInput!): Campaign
     updateCampaign(_id: ID!, campaignData: UpdateCampaignInput!): Campaign
     deleteCampaign(campaignId: ID!): Campaign
-    makeDonation(campaignId: ID!, amount: Int!): Donation
+    # makeDonation(campaignId: ID!, amount: Int!): Donation
     createReview(campaignId: ID!, description: String!, creatorId: ID, createdAt: String): Review
     deleteReview(reviewId: ID!): Review
+    addDonation(campaignId: ID!, amount: Int!, donorId: ID!): Donation
   }
 
   type Query {
@@ -111,6 +125,7 @@ const typeDef = gql`
     users: [User]
     campaigns: [Campaign]
     donations: [Donation]
+    checkout(amount: Int): Checkout
   }
 `;
 

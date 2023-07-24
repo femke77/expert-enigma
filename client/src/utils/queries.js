@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client';
 
 
+
 export const QUERY_GET_ME = gql`
  {  me {
     _id
@@ -36,6 +37,7 @@ export const QUERY_GET_ME = gql`
 export const QUERY_CAMPAIGN = gql`
     {
   campaigns {
+    _id
     createdAt
     creatorId {
       _id
@@ -53,9 +55,7 @@ export const QUERY_CAMPAIGN = gql`
       _id
       amount
       createdAt
-      donorId {
-        _id
-      }
+      donorId 
     }
     reviews {
       createdAt
@@ -82,3 +82,11 @@ export const QUERY_DONATION = gql`
   }
 }}
 `
+
+export const QUERY_CHECKOUT = gql`
+  query getCheckout($amount: Int) {
+    checkout(amount: $amount) {
+      session
+    }
+  }
+`;

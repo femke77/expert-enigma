@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { DELETE_CAMPAIGN } from '../utils/mutations';
 
 function Profile() {
-    const { data, loading } = useQuery(QUERY_GET_ME);
+    const { loading, data } = useQuery(QUERY_GET_ME);
     const [deleteCampaign, { error }] = useMutation(DELETE_CAMPAIGN);
 
     const username = data?.me?.username || [];

@@ -57,7 +57,7 @@ mutation UpdateCampaign($id: ID!, $campaignData: updateCampaignInput!) {
 `;
 
 export const DELETE_CAMPAIGN = gql`
-mutation DeleteCampaign($campaignId: ID!) {
+mutation deleteCampaign($campaignId: ID!) {
   deleteCampaign(campaignId: $campaignId) {
     creatorId {
       _id
@@ -66,24 +66,10 @@ mutation DeleteCampaign($campaignId: ID!) {
 }
 `;
 
-export const MAKE_DONATION = gql`
-mutation Mutation($campaignId: ID!, $amount: Int!) {
-  makeDonation(campaignId: $campaignId, amount: $amount) {
-    amount
-    createdAt
-    donorId {
-      _id
-    }
-    campaignId {
-      _id
-    }
-  }
-}
-`;
 
 
 export const ADD_REVIEW = gql`
-mutation Mutation($campaignId: ID!, $description: String!) {
+mutation addReview($campaignId: ID!, $description: String!) {
   createReview(campaignId: $campaignId, description: $description) {
     description
     campaigns {
@@ -103,4 +89,13 @@ mutation DeleteReview($reviewId: ID!) {
 }
 `;
 
-
+export const ADD_DONATION = gql`
+mutation addDonation($campaignId: ID!, $amount: Int!, $donorId: ID!) {
+  addDonation(campaignId: $campaignId, amount: $amount, donorId: $donorId) {
+    createdAt
+    _id
+    amount
+    campaignId
+    donorId
+  }
+}`

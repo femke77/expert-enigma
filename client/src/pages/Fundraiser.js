@@ -29,7 +29,7 @@ const CampaignData = () => {
     )
 
     return (
-        <div>
+        <div className='campaign-container'>
             {campaigns.map((campaign, index) => (
                 <div key={index}>
                     <h1>{campaign.title}</h1>

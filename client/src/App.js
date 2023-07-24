@@ -17,6 +17,8 @@ import Explore from './pages/Explore';
 import Fundraiser from './pages/Fundraiser';
 import CreateFundraiser from './pages/CreateFundraiser';
 import NotFound from './pages/NotFound';
+import Checkout from "./components/Checkout";
+import Success from "./pages/Success";
 // import '../src/styles/style.css'
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -80,13 +82,21 @@ function App() {
                 element={<CreateFundraiser />}
               />
               <Route
+                path="/checkout"
+                element={<Checkout />}
+              />
+              <Route
+                path="/success"
+                element={<Success />}
+              />
+              <Route
                 path="*"
                 element={<NotFound />}
               />
             </Routes>
-            <div>
+      
               <Footer />
-            </div>
+         
           </Router>
         </ApolloProvider>
       </div>
